@@ -82,35 +82,60 @@ for i in range(value):
 4 3 2 1
 '''
 
+# Мое решение
 '''
-a = int(input())
-k = int(a * (a+1) / 2)
-
-for i in range (1, a+1):
-
-    for n in range (a-i):
-                print(end="  ")
-
-    for j in range (1, i+1):     
-        print(k, end=" ")
-        k -= 1
-
-    # Перевод на другую строку. Если писать print('\n'), то помимо перевода будет еще пустая строка
-    print()
-'''
-
- # В формате слерм
 value = int(input())
 count = int(value * (value+1) / 2)
 
 for i in range (value):
 
     for n in range (value-i):
-                print(end="  ")
+        print(end="   ")
+    
 
     for _ in range (i+1):     
-        print(count, end=" ")
+        if count < 10:
+            print("  ", end="")
+        else:
+            print(" ", end="")
+        
+        print(count, end="")        
         count -= 1
 
     # Перевод на другую строку. Если писать print('\n'), то помимо перевода будет еще пустая строка
     print()   
+'''
+
+# Слерм решение №1
+'''
+value = int(input())
+count = 1
+rows = []
+ 
+for i in range(value, 0, -1):
+    row = []  
+    for _ in range(i):        
+        row.append(count)
+        count += 1
+    rows.append(reversed(row))    
+       
+for row in reversed(rows):    
+    r = ' '.join(map(str, row))      
+    print(f"{r:>{value * 3}}")
+'''
+'''
+# Слёрм решение №2
+value = int(input())
+row_count = 1
+row = []
+ 
+for i in range(value**2 - sum(range(value)), 0, -1):  
+    row.append(i)  
+    
+    if len(row) == row_count:
+        line = ' '.join(map(str, row))
+        
+        print (f'{line:>{value*3}}')
+        row = []
+        row_count += 1
+'''
